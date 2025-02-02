@@ -3,3 +3,41 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    padding: 16px 150px;
+}
+
+#container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.cell {
+    border: 1px solid gray;
+    aspect-ratio: 1/1;
+}
+
+.filled {
+    background-color: #1b60bb;
+}
+
+.panel {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.button {
+    border: none;
+    background: gray;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 200px;
+}
