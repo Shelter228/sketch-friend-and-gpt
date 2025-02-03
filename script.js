@@ -2,26 +2,31 @@ const gameContainer = document.getElementById("container");
 const clearAllBtn = document.querySelector(".clear");
 const ChangeBtn = document.querySelector(".change");
 
-
-for (let i = 0; i < 16; i++) {
-  const cell = document.createElement("div");
-  cell.classList.add("cell");
-  cell.style.width = `calc(100% / 4.5)`; //${value + 0.5}
-  cell.addEventListener("mouseover", () => {
-    cell.classList.add('filled');
-  });
-  gameContainer.appendChild(cell);
+function createGrid(size) {
+  gameContainer.innerHTML = "";
+  const cellSize = 100 / size;
+  for (let i = 0; i < size * size; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.style.width = `${cellSize}%`;
+    cell.style.height = `${cellSize}%`;
+    cell.addEventListener("mouseover", () => cell.classList.add('filled'));
+    gameContainer.appendChild(cell);
+  }
 }
 
+createGrid(4);
+
 clearAllBtn.addEventListener("click", () => {
-    const cells = document.querySelectorAll(".cell");
-    cells.forEach(cell => {
-        cell.classList.remove("filled")
-    })
-})
+  document.querySelectorAll(".cell").forEach(cell => cell.classList.remove("filled"));
+});
 
 ChangeBtn.addEventListener("click", () => {
-    prompt("Введите желаемый размер");
-    gameContainer.innerHTML = "";
-    //осталось взять значение из prompt и сделать новый цикл
-})
+  let size = parseInt(prompt("Введите желаемый размер"), 10);
+  if (isNaN(size) || size <= 0) {
+    alert("Введите положительное число.");
+  } else {
+    size = Math.min(size, 100);
+    createGrid(size);
+  }
+});
